@@ -24,7 +24,7 @@ For the Truecaser model, the requirements are python (3.6), allennlp (0.8.2), an
 
 ## Training the model
 
-To train the best-performing model (`en-core-web-lg` trained on uncased data), first make sure that all the subdirectories in the folder `spacy_files` are empty, then run `python train.py` in your terminal.
+To train the best-performing model (`en-core-web-lg` trained on uncased data), first make sure that all the subdirectories in the folder `spacy_files` are empty (in case they are not empty, the contents could just be deleted since they would be auto-generated when running the code that trains the model), then, run `python train.py` in your terminal.
 
 The file `train.py` could be edited to change the paths to the data and the model’s config file (which would select the model architecture, e.g. `base_config_sm.cfg` would select the model `en_core_web_sm`).
 
