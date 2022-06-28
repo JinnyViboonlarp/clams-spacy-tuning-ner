@@ -28,9 +28,34 @@ To train the best-performing model (`en-core-web-lg` trained on uncased data), f
 
 The file `train.py` could be edited to change the paths to the data and the model’s config file (which would select the model architecture, e.g. `base_config_sm.cfg` would select the model `en_core_web_sm`).
 
+After finish training the model, there will be two new directories,`model-best` and `model-last`, which store the recently trained models, in the current directory. Their names could be changed (for example, changed from `model-best` to `model-best-uncased-lg`) and stored elsewhere.
+
 ## Pre-processing
 
 To create dataset with different casing scenarios from the original cased CoNLL data, the codes `preprocessing.py` and `preprocessing_truecase.py` are used. You do not have to run these codes since all versions of the data (e.g. cased, uncased, truecased) are provided in the folder `conll`
+
+## Predicting the output
+
+### Calculate F1 score
+
+You could run the following command in your terminal. it will show precision, recall, and F1 score, both for each individual label (PER, ORG, LOC, MISC) and for all labels combined.
+
+```bash
+$ python -m spacy evaluate <path-to-best-model> <path-to-testing-file> 
+```
+
+### Create an auto-annotated text file
+
+Alternatively, you could run ` $ python write_ner_prediction.py ` to create an auto-annotated data. What this means is that the code would read the input data (currently set to `conll/test/conll_test_uncased.txt`), predict an NER label for each word with the trained model (currently set to `trained_models/model-best-uncased-sm`), and then create a .txt file with the same format and data as the input file, except that the predicted label would be appended to every line in the file. For example, if a line in the output file (currently set to `conll/test/conll_test_uncased_with_prediction.txt`) looks like this
+
+```
+china NNP B-NP B-PER B-LOC
+```
+The first token ("china") is a word that appears in the input file. The 4th token ("B-PER") is the correct/gold-standard label in the input file (in the context of this example, "china" refers to a Chinese Soccer team). The 5th token ("B-LOC") is the label predicted by the model.
+
+Also, when `python write_ner_prediction.py` is run, it would create `model_confusion.txt` in the current directory, which shows the counts of all possible pairs of 
+
+
 
 
 
