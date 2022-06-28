@@ -53,8 +53,7 @@ china NNP B-NP B-PER B-LOC
 ```
 The first token ("china") is a word that appears in the input file. The 4th token ("B-PER") is the correct/gold-standard label in the input file (in the context of this example, "china" refers to a Chinese Soccer team). The 5th token ("B-LOC") is the label predicted by the model.
 
-Also, when `python write_ner_prediction.py` is run, it would create `model_confusion.txt` in the current directory, which shows the counts of all possible pairs of 
-
+Also, when `python write_ner_prediction.py` is run, it would create `model_confusion.txt` in the current directory, which shows the counts of all possible pairs of (correct_label, predicted_label), like a confusion matrix.
 
 
 
